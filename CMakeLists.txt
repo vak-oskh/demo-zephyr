@@ -13,3 +13,4 @@ target_sources(app PRIVATE src/main.c)
 target_include_directories(app PRIVATE ${CMAKE_SOURCE_DIR}/src)
 
 add_subdirectory(src/core)
+add_subdirectory(src/emulators)
