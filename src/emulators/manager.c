@@ -1,6 +1,6 @@
 #include "manager.h"
 
-// #include "adltc2990.h"
+#include "adltc2990.h"
 #include "core/thread.h"
 
 #include <zephyr/logging/log.h>
@@ -23,7 +23,7 @@ static void emul_processor(void *p1, void *p2, void *p3)
     while (is_thread_running(&emul_thread))
     {
         /* Emulate devices work */
-        // adltc2990_emul_exec();
+        adltc2990_emul_exec();
 
         k_sleep(K_MSEC(EMUL_PROC_TIMEOUT_MS));
     }
@@ -32,7 +32,7 @@ static void emul_processor(void *p1, void *p2, void *p3)
 void emulators_start()
 {
     /* Initialize related emulators */
-    // adltc2990_emul_init();
+    adltc2990_emul_init();
 
     /* Start the thread to run emulators */
     thread_create(&emul_thread, emul_thread_stack,

@@ -1,0 +1,15 @@
+&i2c0 {
+    adltc2990: adltc2990@b {
+        compatible = "adi,adltc2990";
+        reg = <0xb>;
+        temperature-format = <0>;
+        acquistion-format = <1>;
+        measurement-mode = <1 3>;
+        pins-v1-v2-current-resistor = <1000000>;
+        pins-v3-v4-current-resistor = <0>;
+        pin-v1-voltage-divider-resistors = <0 1>;
+        pin-v2-voltage-divider-resistors = <0 1>;
+        pin-v3-voltage-divider-resistors = <0 1>;
+        pin-v4-voltage-divider-resistors = <0 1>;
+    };
+};
