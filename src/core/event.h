@@ -10,6 +10,7 @@
 
 // Events from external devices to handle by the controller
 #define EXT_EVENTS          GRP_OFFSET(BIT(0))          // 0x100
+#define SENSOR_ADLTC2990    (EXT_EVENTS | 0x01)         // 0x101
 
 // Events for the controller from GUI to take action.
 #define GUI_CTRL_EVENTS     GRP_OFFSET(BIT(1))

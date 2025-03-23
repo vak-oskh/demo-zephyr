@@ -2,6 +2,7 @@
 
 #include "core/event.h"
 #include "core/thread.h"
+#include "sensor_adltc2990.h"
 
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
@@ -57,6 +58,9 @@ static void controller_processor(void *p1, void *p2, void *p3)
                 {
                     switch(in_event->code)
                     {
+                        case SENSOR_ADLTC2990:
+                            handle_sensor_adltc2990_data();
+                            break;
                         default:
                             LOG_WRN("Received unknown external event: %#x", in_event->code);
                             break;
@@ -85,6 +89,7 @@ static void controller_processor(void *p1, void *p2, void *p3)
 void controller_start()
 {
     /* Register required devices to process */
+    init_sensor_adltc2990();
 
     /* Run controller thread to wait on events */
     thread_create(&cntr_thread, cntr_thread_stack,
