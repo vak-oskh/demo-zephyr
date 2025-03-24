@@ -1,5 +1,7 @@
 #include "events_handler.h"
 
+#include "screens/home_screen.h"
+
 #include <zephyr/drivers/sensor.h>
 #include <zephyr/logging/log.h>
 #include <zephyr/sys/__assert.h>
@@ -13,5 +15,5 @@ void handle_temp_data(const void *data)
     const struct sensor_value *temp = data;
 
     /* Normalize the fractional part and update the widget */
-    // set_temp_value(temp->val1, temp->val2 / 100000);
+    set_temp_in_celsius(temp->val1, temp->val2 / 100000);
 }

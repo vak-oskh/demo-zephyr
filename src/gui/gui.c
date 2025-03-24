@@ -3,6 +3,7 @@
 #include "core/event.h"
 #include "core/thread.h"
 #include "events_handler.h"
+#include "screens/home_screen.h"
 
 #include <lvgl.h>
 #include <zephyr/devicetree.h>
@@ -93,6 +94,7 @@ void gui_start()
     }
 
     /* Create the default display with related widgets */
+    load_home_screen();
 
     /* Display additional actions */
     lv_timer_handler();
