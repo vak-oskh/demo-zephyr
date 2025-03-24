@@ -1,6 +1,7 @@
 #include "home_screen.h"
 
 #include "gui/widgets/page.h"
+#include "settings_screen.h"
 
 #include <zephyr/logging/log.h>
 #include <zephyr/sys/__assert.h>
@@ -61,7 +62,9 @@ static void settigns_btn_event_handler(lv_event_t *e)
 {
     ARG_UNUSED(e);
 
-    LOG_DBG("Settings button is pressed");
+    LOG_DBG("The 'Settings' button is pressed on the home screen");
+
+    load_settings_screen();
 }
 
 static void create_home_screen_ui()
