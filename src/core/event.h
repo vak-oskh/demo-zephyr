@@ -17,6 +17,7 @@
 
 // Events for the GUI from controler to take action.
 #define CTRL_GUI_EVENTS     GRP_OFFSET(BIT(2))          // 0x400
+#define GUI_SET_TEMP        (CTRL_GUI_EVENTS | 0x01)    // 0x401
 
 typedef struct {
     void *fifo_reserved;   /* Reserved for use by FIFO */

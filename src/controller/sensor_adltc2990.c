@@ -64,8 +64,22 @@ int handle_sensor_adltc2990_data()
 
         if (rc == 0)
         {
-            LOG_INF("Temperature value %u.%u", temp.val1, temp.val2);
-            return rc;
+            /* Create GUI event to process the temperature data */
+            event_t event = {
+                .code = GUI_SET_TEMP,
+                .data = k_malloc(sizeof(temp))
+            };
+
+            if (event.data == NULL)
+            {
+                LOG_ERR("Could not allocate memory for the GUI event!");
+
+                return -ENOMEM;
+            }
+
+            memcpy(event.data, &temp, sizeof(temp));
+
+            return send_event_to_gui(&event);
         }
     }
 

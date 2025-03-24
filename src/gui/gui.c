@@ -2,6 +2,7 @@
 
 #include "core/event.h"
 #include "core/thread.h"
+#include "events_handler.h"
 
 #include <lvgl.h>
 #include <zephyr/devicetree.h>
@@ -57,6 +58,9 @@ static void gui_processor(void *p1, void *p2, void *p3)
                 {
                     switch(in_event->code)
                     {
+                        case GUI_SET_TEMP:
+                            handle_temp_data(in_event->data);
+                            break;
                         default:
                             LOG_WRN("Received unknown GUI event: %#x", in_event->code);
                             break;

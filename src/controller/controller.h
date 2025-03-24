@@ -2,6 +2,7 @@
 #define CONTROLLER_CONTROLLER_H
 
 #include "core/event.h"
+#include "gui/gui.h"
 
 /**
  * The main controller which performs data reading, ISR handling, etc.
