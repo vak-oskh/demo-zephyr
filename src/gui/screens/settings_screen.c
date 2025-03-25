@@ -1,5 +1,6 @@
 #include "settings_screen.h"
 
+#include "about_screen.h"
 #include "gui/widgets/page.h"
 #include "home_screen.h"
 
@@ -30,6 +31,15 @@ static void home_btn_event_handler(lv_event_t *e)
     LOG_DBG("The 'Home' button is pressed on the settings screen");
 
     load_home_screen();
+}
+
+static void about_btn_event_handler(lv_event_t *e)
+{
+    ARG_UNUSED(e);
+
+    LOG_DBG("The 'About' button is pressed on the settings screen");
+
+    load_about_screen();
 }
 
 static void set_temp_unit_label(const bool is_celcius)
@@ -85,6 +95,22 @@ static void create_settings_screen_ui()
             if (home_btn_label)
             {
                 lv_label_set_text_static(home_btn_label, "Home");
+            }
+        }
+
+        /* Create the about button */
+        lv_obj_t *about_btn = lv_button_create(get_page_footer(page));
+
+        if (about_btn)
+        {
+            lv_obj_add_event_cb(about_btn, about_btn_event_handler, LV_EVENT_CLICKED, NULL);
+            lv_obj_center(about_btn);
+
+            lv_obj_t *about_btn_label = lv_label_create(about_btn);
+
+            if (about_btn_label)
+            {
+                lv_label_set_text_static(about_btn_label, "About");
             }
         }
     }
