@@ -16,12 +16,37 @@ static void set_temp_unit_label(const bool is_celcius);
 
 static void temp_units_event_handler(lv_event_t *e)
 {
-    const lv_obj_t *sw = lv_event_get_target_obj(e);
-    const char is_celcius = !lv_obj_has_state(sw, LV_STATE_CHECKED);
+    lv_obj_t *sw = lv_event_get_target_obj(e);
 
-    LOG_DBG("Set temp. units as '%s'", is_celcius ? "Fahrenheit" : "Celsius");
+    if (sw)
+    {
+        lv_obj_remove_state(sw, LV_STATE_CHECKED);
+    }
 
-    set_temp_unit_label(is_celcius);
+    lv_obj_t *warn_mbox = lv_msgbox_create(NULL);
+
+    if (warn_mbox)
+    {
+        lv_msgbox_add_title(warn_mbox, "Warning message!");
+        lv_msgbox_add_close_button(warn_mbox);
+
+        lv_obj_t *warn_msg = lv_obj_create(lv_msgbox_get_content(warn_mbox));
+
+        if (warn_msg)
+        {
+            lv_obj_set_flex_flow(warn_msg, LV_FLEX_FLOW_COLUMN);
+            lv_obj_set_size(warn_msg, LV_PCT(100), LV_SIZE_CONTENT);
+
+            lv_obj_t *warn_label = lv_label_create(warn_msg);
+
+            if (warn_label)
+            {
+                lv_obj_set_size(warn_label, LV_PCT(100), LV_SIZE_CONTENT);
+                lv_label_set_text(warn_label,
+                                  "Switching to Fahrenheit has not been supported yet.");
+            }
+        }
+    }
 }
 
 static void home_btn_event_handler(lv_event_t *e)
